@@ -13,45 +13,31 @@ class MeuApp extends StatelessWidget {
   }
 }
 
-  final TextEditingController nomeController = TextEditingController();
   final TextEditingController valorController = TextEditingController();
+  final TextEditingController aporteController = TextEditingController();
+  final TextEditingController taxaController = TextEditingController();
   final TextEditingController quantidadeController = TextEditingController();
-  final TextEditingController categoriaController = TextEditingController();
-  final TextEditingController codigoController = TextEditingController();
+  final TextEditingController metaController = TextEditingController();
 
-  double total = 0;
+  double resultado = 0;
 
-  void somar(){
+  void total(){
     double valor=double.tryParse(valorController.text) ?? 0;
     double quantidade=double.tryParse(quantidadeController.text) ?? 0;
   
-  setState((){
-    total = valor * quantidade;
-  });
+  
   }
 
   void limpar(){
-    double nome=double.tryParse(nomeController.text) ?? 0;
     double valor=double.tryParse(valorController.text) ?? 0;
+    double aporte=double.tryParse(aporteController.text) ?? 0;
+    double taxa=double.tryParse(taxaController.text) ?? 0;
     double quantidade=double.tryParse(quantidadeController.text) ?? 0;
-    double categoria=double.tryParse(categoriaController.text) ?? 0;
-    double codigo=double.tryParse(codigoController.text) ?? 0;
+    double meta=double.tryParse(metaController.text) ?? 0;
   }
 
 
 class MinhaTela extends StatelessWidget {
-  void total() {
-    print("Calculando...");
-  }
-
-  void limpar() {
-    print("Limpando...");
-  }
-
-  void salvar() {
-    print("Salvando...");
-  }
-
 
   @override
   Widget build(BuildContext context) {
@@ -70,16 +56,16 @@ class MinhaTela extends StatelessWidget {
         padding: EdgeInsets.all(20),
         child: Column(
           children: [
-            meuTextField("Nome do Produto", Icons.local_offer),
-            meuTextField("Preço", Icons.money),
-            meuTextField("Quantidade (Estoque)", Icons.inventory),
-            meuTextField("Categoria", Icons.category),
-            meuTextField("Código de Acesso", Icons.lock,senha:true),
+            meuTextField("Valor Inicial", Icons.attach_money),
+            meuTextField(" Aporte Mensal", Icons.calendar_month),
+            meuTextField(" Taxa de Juros", Icons.percent_outlined),
+            meuTextField("Quantidade de Meses", Icons.calendar_month),
+            meuTextField("Meta Financeira ", Icons.lock,senha:true),
 
             const SizedBox(height: 25),
-            meuBotao("Total", Colors.deepOrange, total),
-            meuBotao("limpar", Colors.deepOrange, limpar),
-            meuBotao("Salvar", Colors.deepOrange, salvar),
+            meuBotao("Calcular", Colors.deepOrange, total),
+            meuBotao("Limpar Dados", Colors.deepOrange, limpar),
+        
           ],
         ),
       ),
